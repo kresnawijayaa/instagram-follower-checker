@@ -3,6 +3,8 @@
 Web sederhana untuk membaca file ZIP hasil export data pribadi dari Instagram.
 Proses ekstraksi ZIP berjalan langsung di browser.
 
+Created by [Kresna Wijaya](https://kresnawijaya.web.id).
+
 ## Menjalankan Project
 
 ```bash

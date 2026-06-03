@@ -58,6 +58,22 @@
   margin: 8px 0 0;
 }
 
+.creator-credit {
+  margin: 10px 0 0;
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.creator-credit a {
+  color: #1a73e8;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.creator-credit a:hover {
+  text-decoration: underline;
+}
+
 .privacy-note {
   margin-top: 20px;
   padding: 16px 18px;

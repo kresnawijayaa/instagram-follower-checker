@@ -162,6 +162,12 @@ export default function SimplePage() {
           <p className="simple-description">
             Analisis file export pribadi tanpa login, password, OTP, atau token.
           </p>
+          <p className="creator-credit">
+            By{" "}
+            <a href="https://kresnawijaya.web.id" target="_blank" rel="noreferrer">
+              Kresna Wijaya
+            </a>
+          </p>
         </div>
       </header>
 
