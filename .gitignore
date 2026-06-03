@@ -1,0 +1,10 @@
+node_modules/
+dist/
+docs/
+private-kresna/
+
+# Local Instagram export data
+followers_*.json
+following.json
+daftar_eksekusi_unfollow.json
+excluded_users.json
