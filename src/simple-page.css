@@ -58,6 +58,28 @@
   margin: 8px 0 0;
 }
 
+.privacy-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px solid #d7e3fd;
+  border-radius: 8px;
+  background: #f6f9ff;
+}
+
+.privacy-note strong {
+  display: block;
+  color: #174ea6;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.privacy-note p {
+  margin: 8px 0 0;
+  color: #3c4043;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 .zip-guide {
   margin-top: 20px;
   padding: 18px;

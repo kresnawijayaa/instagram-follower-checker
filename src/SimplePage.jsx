@@ -111,7 +111,7 @@ export default function SimplePage() {
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [sortDirection, setSortDirection] = useState("desc");
-  const [status, setStatus] = useState("Upload ZIP hasil export Instagram untuk memulai.");
+  const [status, setStatus] = useState("Upload ZIP data export untuk memulai.");
   const [isLoading, setIsLoading] = useState(false);
 
   const followersSet = useMemo(
@@ -158,15 +158,24 @@ export default function SimplePage() {
     <main className="simple-shell">
       <header className="simple-header">
         <div>
-          <h1>Instagram Follower Checker</h1>
+          <h1>Personal Instagram Archive Viewer</h1>
           <p className="simple-description">
-            Upload file ZIP hasil export Instagram.
+            Analisis file export pribadi tanpa login, password, OTP, atau token.
           </p>
         </div>
       </header>
 
+      <section className="privacy-note" aria-label="Catatan privasi">
+        <strong>Privasi data</strong>
+        <p>
+          File ZIP diproses langsung di browser Anda. Aplikasi ini tidak meminta login,
+          password, OTP, token, atau akses akun. Data tidak dikirim ke server dan tidak
+          disimpan di database.
+        </p>
+      </section>
+
       <section className="zip-guide" aria-labelledby="zip-guide-title">
-        <h2 id="zip-guide-title">Cara Mendapatkan File JSON Instagram</h2>
+        <h2 id="zip-guide-title">Cara Mendapatkan File JSON dari Instagram</h2>
         <ol>
           <li>Buka Instagram, masuk ke Profile &gt; Settings & Activity.</li>
           <li>Pilih Accounts center &gt; Your information and permissions.</li>
@@ -181,7 +190,7 @@ export default function SimplePage() {
         </ol>
 
         <label className={`zip-upload ${isLoading ? "is-loading" : ""}`}>
-          <span>{isLoading ? "Memproses ZIP..." : "Upload file ZIP"}</span>
+          <span>{isLoading ? "Memproses ZIP..." : "Upload ZIP export"}</span>
           <input
             type="file"
             accept=".zip,application/zip"
@@ -269,7 +278,7 @@ export default function SimplePage() {
                   <td colSpan={4}>
                     <div className="simple-empty">
                       <strong>Belum ada data</strong>
-                      <span>Upload ZIP Instagram untuk menampilkan hasil perbandingan.</span>
+                      <span>Upload ZIP export untuk menampilkan hasil perbandingan.</span>
                     </div>
                   </td>
                 </tr>

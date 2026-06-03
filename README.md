@@ -1,7 +1,7 @@
-# Instagram Follower Checker
+# Personal Instagram Archive Viewer
 
-Web sederhana untuk membandingkan followers dan following dari file ZIP hasil export
-Instagram. Proses ekstraksi ZIP berjalan langsung di browser.
+Web sederhana untuk membaca file ZIP hasil export data pribadi dari Instagram.
+Proses ekstraksi ZIP berjalan langsung di browser.
 
 ## Menjalankan Project
 
@@ -20,5 +20,7 @@ npm run build
 
 ## Privasi
 
-File ZIP dan JSON export Instagram tidak disimpan oleh aplikasi publik dan tidak
-termasuk dalam repository ini.
+- File ZIP diproses langsung di browser.
+- Aplikasi tidak meminta login, password, OTP, token, atau akses akun.
+- Tidak ada data yang disimpan di database.
+- Tidak ada data export Instagram yang masuk ke repository ini.
