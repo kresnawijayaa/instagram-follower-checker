@@ -1,6 +1,7 @@
-# Personal Instagram Archive Viewer
+# FollowLens Archive Viewer
 
-Web sederhana untuk membaca file ZIP hasil export data pribadi dari Instagram.
+Web sederhana untuk membaca file ZIP hasil export data pribadi dari Instagram atau
+Threads.
 Proses ekstraksi ZIP berjalan langsung di browser.
 
 Created by [Kresna Wijaya](https://kresnawijaya.web.id).
@@ -25,4 +26,4 @@ npm run build
 - File ZIP diproses langsung di browser.
 - Aplikasi tidak meminta login, password, OTP, token, atau akses akun.
 - Tidak ada data yang disimpan di database.
-- Tidak ada data export Instagram yang masuk ke repository ini.
+- Tidak ada data export Instagram atau Threads yang masuk ke repository ini.

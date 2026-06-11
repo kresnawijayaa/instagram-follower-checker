@@ -12,7 +12,7 @@
 .simple-shell {
   width: 100%;
   min-height: 100vh;
-  padding: 32px 24px 48px;
+  padding: 32px 24px 72px;
   background: #ffffff;
   color: #202124;
   font-family: "Roboto", sans-serif;
@@ -56,22 +56,6 @@
 
 .simple-description {
   margin: 8px 0 0;
-}
-
-.creator-credit {
-  margin: 10px 0 0;
-  color: #5f6368;
-  font-size: 13px;
-}
-
-.creator-credit a {
-  color: #1a73e8;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.creator-credit a:hover {
-  text-decoration: underline;
 }
 
 .privacy-note {
@@ -282,9 +266,33 @@
   color: #202124;
 }
 
+.floating-credit {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 11px;
+  border: 1px solid #e8eaed;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px rgba(60, 64, 67, 0.14);
+  color: #5f6368;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+}
+
+.floating-credit:hover {
+  color: #1a73e8;
+  border-color: #d2e3fc;
+}
+
 @media (max-width: 760px) {
   .simple-shell {
-    padding: 20px 12px 32px;
+    padding: 20px 12px 72px;
   }
 
   .simple-header {
@@ -425,5 +433,12 @@
 
   .simple-table-wrap td[colspan]::before {
     display: none;
+  }
+
+  .floating-credit {
+    right: 12px;
+    bottom: 12px;
+    padding: 7px 10px;
+    font-size: 11px;
   }
 }
