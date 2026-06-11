@@ -503,17 +503,14 @@ export default function SimplePage() {
       setFollowers(parsed.followers);
       setFollowing(parsed.following);
 
-      let latestUsageCount = usageCount;
-
       try {
-        latestUsageCount = await requestUsageCount("POST");
-        setUsageCount(latestUsageCount);
+        setUsageCount(await requestUsageCount("POST"));
       } catch {
-        latestUsageCount = usageCount;
+        setUsageCount(usageCount);
       }
 
       setStatus(
-        `${file.name} berhasil diproses. Ditemukan ${parsed.sourceFiles.length} file JSON/HTML yang relevan. Tanggal terbaca: following ${countDatedAccounts(parsed.following)}/${parsed.following.length}, followers ${countDatedAccounts(parsed.followers)}/${parsed.followers.length}.${latestUsageCount === null ? "" : ` Total penggunaan berhasil: ${numberFormatter.format(latestUsageCount)}.`}`
+        `${file.name} berhasil diproses. Ditemukan ${parsed.sourceFiles.length} file JSON/HTML yang relevan. Tanggal terbaca: following ${countDatedAccounts(parsed.following)}/${parsed.following.length}, followers ${countDatedAccounts(parsed.followers)}/${parsed.followers.length}.`
       );
     } catch (error) {
       setFollowers([]);
@@ -533,6 +530,13 @@ export default function SimplePage() {
             Cek relasi followers dan following dari file export Instagram atau Threads.
           </p>
         </div>
+
+        {usageCount !== null ? (
+          <div className="usage-counter" aria-label="Jumlah penggunaan berhasil">
+            <span>Tools ini sudah digunakan</span>
+            <strong>{numberFormatter.format(usageCount)} kali</strong>
+          </div>
+        ) : null}
       </header>
 
       <section className="privacy-note" aria-label="Catatan privasi">
@@ -573,13 +577,6 @@ export default function SimplePage() {
       <p className="simple-status" role="status">
         {status}
       </p>
-
-      {usageCount !== null ? (
-        <div className="usage-counter" aria-label="Jumlah penggunaan berhasil">
-          <span>Sudah dipakai</span>
-          <strong>{numberFormatter.format(usageCount)} kali</strong>
-        </div>
-      ) : null}
 
       <section className="simple-stats" aria-label="Ringkasan akun">
         <article>
