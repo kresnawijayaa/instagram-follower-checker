@@ -2,6 +2,9 @@ node_modules/
 dist/
 docs/
 private-kresna/
+.env
+.env.local
+.env.*.local
 
 # Local Instagram export data
 followers_*.json

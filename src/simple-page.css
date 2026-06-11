@@ -110,6 +110,24 @@
   margin: 16px 0 0;
 }
 
+.usage-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 11px;
+  border: 1px solid #d7e3fd;
+  border-radius: 999px;
+  background: #f6f9ff;
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.usage-counter strong {
+  color: #174ea6;
+  font-weight: 700;
+}
+
 .zip-upload {
   display: inline-flex;
   align-items: center;

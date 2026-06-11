@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import JSZip from "jszip";
 import "./simple-page.css";
 
@@ -382,6 +382,20 @@ function countDatedAccounts(accounts) {
   return accounts.filter((account) => account.timestamp > 0).length;
 }
 
+async function requestUsageCount(method = "GET") {
+  const response = await fetch("/api/usage", {
+    method,
+    headers: { Accept: "application/json" },
+  });
+
+  if (!response.ok) {
+    throw new Error("Counter penggunaan belum tersedia.");
+  }
+
+  const data = await response.json();
+  return Number(data.count ?? 0);
+}
+
 async function parseArchiveEntry(entry, type, getFallbackProfileUrl) {
   const content = await entry.async("string");
 
@@ -438,6 +452,27 @@ export default function SimplePage() {
   const [sortDirection, setSortDirection] = useState("desc");
   const [status, setStatus] = useState("Upload ZIP export Instagram atau Threads untuk memulai.");
   const [isLoading, setIsLoading] = useState(false);
+  const [usageCount, setUsageCount] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    requestUsageCount()
+      .then((count) => {
+        if (isMounted) {
+          setUsageCount(count);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setUsageCount(null);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const followersSet = useMemo(
     () => new Set(followers.map((account) => account.username.toLowerCase())),
@@ -467,8 +502,18 @@ export default function SimplePage() {
       const parsed = await parseMetaArchiveZip(file);
       setFollowers(parsed.followers);
       setFollowing(parsed.following);
+
+      let latestUsageCount = usageCount;
+
+      try {
+        latestUsageCount = await requestUsageCount("POST");
+        setUsageCount(latestUsageCount);
+      } catch {
+        latestUsageCount = usageCount;
+      }
+
       setStatus(
-        `${file.name} berhasil diproses. Ditemukan ${parsed.sourceFiles.length} file JSON/HTML yang relevan. Tanggal terbaca: following ${countDatedAccounts(parsed.following)}/${parsed.following.length}, followers ${countDatedAccounts(parsed.followers)}/${parsed.followers.length}.`
+        `${file.name} berhasil diproses. Ditemukan ${parsed.sourceFiles.length} file JSON/HTML yang relevan. Tanggal terbaca: following ${countDatedAccounts(parsed.following)}/${parsed.following.length}, followers ${countDatedAccounts(parsed.followers)}/${parsed.followers.length}.${latestUsageCount === null ? "" : ` Total penggunaan berhasil: ${numberFormatter.format(latestUsageCount)}.`}`
       );
     } catch (error) {
       setFollowers([]);
@@ -528,6 +573,13 @@ export default function SimplePage() {
       <p className="simple-status" role="status">
         {status}
       </p>
+
+      {usageCount !== null ? (
+        <div className="usage-counter" aria-label="Jumlah penggunaan berhasil">
+          <span>Sudah dipakai</span>
+          <strong>{numberFormatter.format(usageCount)} kali</strong>
+        </div>
+      ) : null}
 
       <section className="simple-stats" aria-label="Ringkasan akun">
         <article>
